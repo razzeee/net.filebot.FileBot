@@ -1,0 +1,80 @@
+app-id: net.filebot.Filebot
+runtime: org.freedesktop.Platform
+runtime-version: "21.08"
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk11
+command: filebot.sh
+separate-locales: false
+modules:
+  - name: openjdk
+    buildsystem: simple
+    build-commands:
+      - /usr/lib/sdk/openjdk11/install.sh
+  - name: chromaprint
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    sources:
+      - type: archive
+        url: https://github.com/acoustid/chromaprint/archive/v1.5.0.tar.gz
+        sha256: 5c8e0d579cb3478900699110aa961c1552a422a18741cf67dd62136b1b877c7b
+  - name: libzen
+    subdir: Project/GNU/Library
+    config-opts:
+      - --enable-shared
+      - --disable-static
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /lib/*.la
+    sources:
+      - type: archive
+        url: https://mediaarea.net/download/source/libzen/0.4.39/libzen_0.4.39.tar.xz
+        sha256: cded5d7774294e7d5b42768ceb285243709b6e99eec6e980a3cf7f0890dbb622
+  - name: libmediainfo
+    subdir: Project/GNU/Library
+    config-opts:
+      - --enable-shared
+      - --disable-static
+      - --with-libcurl
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /lib/*.la
+    sources:
+      - type: archive
+        url: https://mediaarea.net/download/source/libmediainfo/21.09/libmediainfo_21.09.tar.xz
+        sha256: 69be9444f6a03a1bdf56713ee31d56e987c502a7ec18eb54ee70fcc171b7f126
+  - name: filebot
+    ensure-writable:
+      - /bin
+    buildsystem: simple
+    build-commands:
+      - tar xf FileBot_4.9.4-portable.tar.xz
+      - install -Dm755 filebot.sh /app/bin/filebot.sh
+      - install -Dm755 jar/filebot.jar /app/bin/jar/filebot.jar
+      - cp -r jar/* /app/bin/jar
+    post-install:
+      - install -dm755 ${FLATPAK_DEST}/bin
+      - ln -s /var/data ${FLATPAK_DEST}/bin/data
+    sources:
+      - type: file
+        path: net.filebot.Filebot.appdata.xml
+      - type: file
+        path: filebot.png
+      - type: file
+        path: filebot.desktop
+      - type: file
+        url: https://get.filebot.net/filebot/FileBot_4.9.4/FileBot_4.9.4-portable.tar.xz
+        sha256: 7f3d01f4ffd406b94a18f66485e31dff87059d61edf9bad2df3453bf89d5b7da
+        dest-filename: FileBot_4.9.4-portable.tar.xz
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --env=PATH=/usr/bin:/app/bin:/app/jre/bin
+  - --env=JAVA_HOME=/app/jre
+  - --share=network
+  - --filesystem=home
