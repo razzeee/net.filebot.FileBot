@@ -11,6 +11,15 @@ modules:
     buildsystem: simple
     build-commands:
       - /usr/lib/sdk/openjdk11/install.sh
+  - name: javafx
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/javafx
+      - cp -r ./ /app/javafx
+    sources:
+      - type: archive
+        url: https://download2.gluonhq.com/openjfx/16/openjfx-16_linux-x64_bin-sdk.zip
+        sha256: 5bd4392d0d2d6a4ddc12bedf8d912d4af17f8622f0560dbe0281f56c4f9ed14c
   - name: chromaprint
     buildsystem: cmake-ninja
     config-opts:
