@@ -62,24 +62,25 @@ modules:
       - /bin
     buildsystem: simple
     build-commands:
-      - tar xf FileBot_4.9.4-portable.tar.xz
-      - install -Dm755 filebot.sh /app/bin/filebot.sh
-      - install -Dm755 jar/filebot.jar /app/bin/jar/filebot.jar
-      - cp -r jar/* /app/bin/jar
-    post-install:
-      - install -dm755 ${FLATPAK_DEST}/bin
-      - ln -s /var/data ${FLATPAK_DEST}/bin/data
+      - tar xf FileBot_4.9.4-aur.tar.xz
+      - cp -r usr/share/filebot/* ${FLATPAK_DEST}
+      - install -Dm755 filebot.sh ${FLATPAK_DEST}/bin/filebot.sh
+      - install -Dm644 net.filebot.Filebot.appdata.xml /app/share/appdata/net.filebot.Filebot.appdata.xml
+      - install -Dm644 net.filebot.Filebot.svg /app/share/icons/hicolor/scalable/apps/net.filebot.Filebot.svg
+      - install -Dm644 net.filebot.Filebot.desktop /app/share/applications/net.filebot.Filebot.desktop
     sources:
       - type: file
         path: net.filebot.Filebot.appdata.xml
       - type: file
-        path: filebot.png
+        path: filebot.sh
       - type: file
-        path: filebot.desktop
+        path: net.filebot.Filebot.desktop
       - type: file
-        url: https://get.filebot.net/filebot/FileBot_4.9.4/FileBot_4.9.4-portable.tar.xz
-        sha256: 7f3d01f4ffd406b94a18f66485e31dff87059d61edf9bad2df3453bf89d5b7da
-        dest-filename: FileBot_4.9.4-portable.tar.xz
+        path: net.filebot.Filebot.svg
+      - type: file
+        url: https://get.filebot.net/filebot/FileBot_4.9.4/FileBot_4.9.4-aur.tar.xz
+        sha256: dbf23ff83dcca63345415bbcc2b277f41e3bbb458acc9a0b0201c51d28ae3148
+        dest-filename: FileBot_4.9.4-aur.tar.xz
 finish-args:
   - --share=ipc
   - --socket=x11

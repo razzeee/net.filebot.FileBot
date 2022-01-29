@@ -7,11 +7,14 @@
   <summary>The ultimate TV and Movie Renamer</summary>
   <url type="homepage">https://filebot.net</url>
   <description>
-  FileBot is the ultimate tool for renaming and organizing your movies, TV shows and Anime. Match and rename media files against online databases, download artwork and cover images, fetch subtitles, write metadata, and more, all at once in matter of seconds. It's smart and just works.
+    <p>FileBot is the ultimate tool for renaming and organizing your movies, TV shows and Anime. Match and rename media files against online databases, download artwork and cover images, fetch subtitles, write metadata, and more, all at once in matter of seconds. It's smart and just works.</p>
   </description>
+  <metadata_license>LicenseRef-proprietary</metadata_license>
   <categories>
     <category>AudioVideo</category>
     <category>Video</category>
+    <category>Utility</category>
+    <category>FileTools</category>
   </categories>
   <releases>
     <release version="4.9.4" date="2021-07-28"/>
