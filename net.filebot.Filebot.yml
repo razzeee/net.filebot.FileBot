@@ -59,7 +59,7 @@ modules:
       - /bin
     buildsystem: simple
     build-commands:
-      - tar xf FileBot_4.9.4-aur.tar.xz
+      - tar xf FileBot_4.9.5-aur.tar.xz
       - cp -r usr/share/filebot/* ${FLATPAK_DEST}
       - install -Dm755 filebot.sh ${FLATPAK_DEST}/bin/filebot.sh
       - install -Dm644 net.filebot.Filebot.appdata.xml /app/share/appdata/net.filebot.Filebot.appdata.xml
@@ -75,9 +75,9 @@ modules:
       - type: file
         path: net.filebot.Filebot.svg
       - type: file
-        url: https://get.filebot.net/filebot/FileBot_4.9.4/FileBot_4.9.4-aur.tar.xz
-        sha256: dbf23ff83dcca63345415bbcc2b277f41e3bbb458acc9a0b0201c51d28ae3148
-        dest-filename: FileBot_4.9.4-aur.tar.xz
+        url: https://get.filebot.net/filebot/FileBot_4.9.5/FileBot_4.9.5-aur.tar.xz
+        sha256: 42374d6a3f69351dec868de70591c14264b9c470ce04359e8034823f4e0e57a1
+        dest-filename: FileBot_4.9.5-aur.tar.xz
 finish-args:
   - --share=ipc
   - --socket=x11
