@@ -12,6 +12,9 @@
   <launchable type="desktop-id">net.filebot.Filebot.desktop</launchable>
   <content_rating type="oars-1.1" />
   <metadata_license>CC0-1.0</metadata_license>
+  <url type="homepage">https://filebot.net/</url>
+  <url type="bugtracker">https://www.filebot.net/forums/viewforum.php?f=6</url>
+  <url type="help">https://www.filebot.net/forums/viewtopic.php?t=7</url>
   <screenshots>
     <screenshot>
       <caption>Filebot rename frontend</caption>
